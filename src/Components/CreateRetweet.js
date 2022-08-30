@@ -44,7 +44,7 @@ function CreateRetweet(Props) {
                 'Authorization': 'Bearer ' + String(tokenaccess)
             }
         })
-            .then((res) => { console.log(res.data, res.status); e.target.reset(); setmakeRetweet(false); })
+            .then((res) => {  e.target.reset(); setmakeRetweet(false); })
             .catch((err) => console.log(err))
     }
 
@@ -52,7 +52,7 @@ function CreateRetweet(Props) {
     return (
         <div className={makeRetweet ? "d-block" : "d-none"}>
             <form onSubmit={e => formHandle(e)} className=" p-2 text-center text-light" encType=" multipart /form-data"
-                style={{ position: "fixed", width: "500px", height: "350px", borderRadius: "15px", left: "50%", top: "50%", transform: "translate(-50%,-50%)", backgroundColor: "#36a2b9" }}>
+                style={{ position: "fixed", width: "500px", height: "350px", borderRadius: "15px", left: "50%", top: "50%", transform: "translate(-50%,-50%)", backgroundColor: "#00acee" }}>
                 <div className="d-flex align-items-center flex-column">
                     <h2>Create Tweet</h2>
                     <textarea style={{ width: "300px", height: "200px", resize: "none", borderRadius: "25px", fontSize: "25px", textAlign: "center" }} name='content' value={userReg.content} onChange={e => userHandle(e)} />

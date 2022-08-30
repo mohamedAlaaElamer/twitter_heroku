@@ -76,7 +76,7 @@ function EditProfile() {
     };
 
     const getpic = (e) => {
-        console.log(e.target.files[0])
+        // console.log(e.target.files[0])
         setimage(e.target.files[0])
 
     }
@@ -93,7 +93,7 @@ function EditProfile() {
                 'Authorization': 'Bearer ' + String(tokenaccess)
             }
         })
-            .then((res) => { console.log(res.data, res.status); setData(res.data.userinfo) })
+            .then((res) => { setData(res.data.userinfo) })
             .catch((err) => console.log(err))
     }, [])
 
@@ -144,7 +144,7 @@ function EditProfile() {
 
                                 <div style={{ marginLeft: "25px" }}>
                                     <h1 >{JSON.parse(localStorage.getItem("userinfo")).username}</h1>
-                                    <button type="button" className="btn btn-light" style={{ color: "white", position: "absolute", top: "70%", left: "25%", width: "25%", backgroundColor: "cadetblue" }} onClick={(e) => { e.preventDefault(); onButtonClick(); }}>Change Pic</button>
+                                    <button type="button" className="btn btn-light" style={{ color: "white", position: "absolute", top: "70%", left: "25%", width: "25%", backgroundColor: "#00acee" , borderRadius : "20px" }} onClick={(e) => { e.preventDefault(); onButtonClick(); }}>Change Pic</button>
                                 </div>
                                 <input type="file" ref={inputFile} name='propic' style={{ display: "none" }} onChange={e => getpic(e)} />
                             </div>
@@ -194,9 +194,9 @@ function EditProfile() {
                             </div>
                             <div>
 
-                                <input style={{ width: "45%", marginRight: "5%" }} className="btn  btn-light" type="submit" value='Close' onClick={(e) => { e.preventDefault(); window.location.href = "/home" }} />
+                                <input style={{ width: "45%", marginRight: "5%" , backgroundColor : "#00acee" , borderRadius : "20px" }} className="btn text-light" type="submit" value='Close' onClick={(e) => { e.preventDefault(); window.location.href = "/home" }} />
 
-                                <input style={{ width: "45%", marginLeft: "5%" }} className="btn btn-info text-light" type="submit" disabled={errors.FirstNameError || errors.LastNameError} value='Save' />
+                                <input style={{ width: "45%", marginLeft: "5%" , backgroundColor : "#00acee" , borderRadius : "20px" }} className="btn text-light" type="submit" disabled={errors.FirstNameError || errors.LastNameError} value='Save' />
                             </div>
 
 

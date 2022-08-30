@@ -94,13 +94,12 @@ function Login() {
                             'Content-Type': 'application/json',
                             'Authorization': 'Bearer ' + String(res.data.access)
                         }
-                    }).then((repo) => { console.log(repo); if (repo.status === 200) localStorage.setItem("userinfo", JSON.stringify(repo.data)); window.location.href = "/home"; })
+                    }).then((repo) => { if (repo.status === 200) localStorage.setItem("userinfo", JSON.stringify(repo.data)); window.location.href = "/home"; })
                         .catch((err) => console.log(err))
                 }
             })
             .catch((err) => {
-                console.log(err); console.log("not a user"); if (err.response.status === 401) {
-                    console.log("not a user");
+                 if (err.response.status === 401) {
                     setErrors({
                         ...errors,
                         PasswordError: "Wrong UserName or Password"

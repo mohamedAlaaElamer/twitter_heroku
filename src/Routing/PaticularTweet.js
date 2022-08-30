@@ -24,7 +24,7 @@ function ParticularTweet() {
                     'Authorization': 'Bearer ' + String(tokenaccess)
                 }
             })
-                .then((res) => { console.log(res.data, res.status); settweet(res.data.showtweet) })
+                .then((res) => { settweet(res.data.showtweet) })
                 .catch((err) => console.log(err))
         }, 1000)
 
@@ -36,7 +36,7 @@ function ParticularTweet() {
     return (
         <>
             <NavBar />
-            <div className="followers p-2 w-50 mx-auto mt-5 mb-5 rounded" style={{ backgroundColor: "ghostwhite", color: "#777" }}>
+            <div>
 
                 {tweet.id && <Tweets key={tweet.id} content={tweet} />}
 

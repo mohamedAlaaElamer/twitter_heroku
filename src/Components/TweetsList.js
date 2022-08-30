@@ -18,7 +18,7 @@ function TweetsList() {
                     'Authorization': 'Bearer ' + String(tokenaccess)
                 }
             })
-                .then((res) => { console.log(res.data.tweetlist, res.status); setTweets(res.data.tweetlist) })
+                .then((res) => { setTweets(res.data.tweetlist) })
                 .catch((err) => console.log(err))
         }, 1000);
 

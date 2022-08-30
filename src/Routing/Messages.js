@@ -26,7 +26,7 @@ function Messages() {
                         'Authorization': 'Bearer ' + String(tokenaccess)
                     }
                 })
-                    .then((res) => { console.log(res.data, res.status); setDivmess(res.data.message.reverse()); setuserimage(res.data.propic); })
+                    .then((res) => { setDivmess(res.data.message.reverse()); setuserimage(res.data.propic); })
                     .catch((err) => console.log(err))
 
 
@@ -67,7 +67,7 @@ function Messages() {
                     {params.username && (
                         <>
                             <div>
-                                <div className="message d-flex" style={{ width: "50%", margin: "auto", marginTop: "10px", marginBottom: "10px" }}>
+                                <div className="message d-flex align-items-center" style={{ width: "50%", margin: "auto", marginTop: "10px", marginBottom: "10px" }}>
                                     {userimage ? (
                                         <img src={`https://mini-twitter-app2.herokuapp.com${userimage}`} style={{ width: "80px", height: "80px", borderRadius: "80px", marginLeft: "15px", marginRight: "15px" }} />
                                     ) : (
@@ -89,8 +89,9 @@ function Messages() {
                                             return (
                                                 <>
                                                     <p style={{
-                                                        maxWidth: "100%", wordWrap: "break-word", backgroundColor: "#36a2b9", borderRadius: "25px", width: "fit-content", color: "white", textAlign: "left", padding: "10px",
-                                                        alignSelf: e.from === JSON.parse(localStorage.getItem("userinfo")).username ? "flex-end" : "flex-start"
+                                                        maxWidth: "100%", minWidth : "100px" , textAlign :"center", wordWrap: "break-word", backgroundColor: e.from === JSON.parse(localStorage.getItem("userinfo")).username ? "#41464b" : "#00acee",
+                                                         borderRadius: "25px", width: "fit-content", color: e.from === JSON.parse(localStorage.getItem("userinfo")).username ? "#f8f9fa" : "white", textAlign: "left", padding: "15px",
+                                                        alignSelf: e.from === JSON.parse(localStorage.getItem("userinfo")).username ? "flex-end" : "flex-start" , textAlign: "center"
                                                     }}>
                                                         {e.message}
                                                     </p>
@@ -100,9 +101,9 @@ function Messages() {
 
                                         })}
                                     </div>
-                                    <form style={{ backgroundColor: "#36a2b9", textAlign: "center", padding: "20px", borderRadius: "25px", display: "flex", alignItems: "center" }} onSubmit={e => { formhandler(e) }}>
+                                    <form style={{ backgroundColor: "#00acee", textAlign: "center", padding: "20px", borderRadius: "25px", display: "flex", alignItems: "center" }} onSubmit={e => { formhandler(e) }}>
                                         <textarea style={{ width: "100%", minHeight: "50%", resize: "none", borderRadius: "25px", textAlign: "center", fontSize: "25px" }} name='content' value={mess} onChange={(e) => setMess(e.target.value)} />
-                                        <input className="btn btn-light btn-outline-dark" style={{ color: '#36a2b9', marginLeft: "15px", width: "100px", height: "50px" }} type={'submit'} value="Send" />
+                                        <input className="btn btn-light" style={{ color: '#00acee', marginLeft: "15px", width: "100px", height: "50px" , borderRadius : "50px" }} type={'submit'} value="Send" />
                                     </form>
                                 </div>
 

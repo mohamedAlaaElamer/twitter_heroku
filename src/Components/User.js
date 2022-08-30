@@ -15,12 +15,12 @@ function User(Props) {
                 'Authorization': 'Bearer ' + String(tokenaccess)
             }
         })
-            .then((res) => { console.log(res.data, res.status); })
-            .catch((err) => console.log(err))
+        // .then((res) => { console.log(res.data, res.status); })
+        // .catch((err) => console.log(err))
     }
 
     return (
-        <div className="follower m-4 p-3" style={{ border: "2px solid grey", borderRadius: "4px", position: "relative" }} onClick={() => { window.location.href = `/${Props.info.username}` }}>
+        <div className="follower m-4 p-3" style={{ border: "1px solid lightskyblue", borderRadius: "4px", position: "relative" }} onClick={() => { window.location.href = `/${Props.info.username}` }}>
             {Props.info.propic ? (
                 <img src={`https://mini-twitter-app2.herokuapp.com${Props.info.propic}`} style={{ width: "80px", height: "80px", borderRadius: "80px" }} />
             ) : (
@@ -28,8 +28,12 @@ function User(Props) {
             )}
 
             <h1>{Props.info.username}</h1>
-            <Link className="text-decoration-none" to={`/${Props.info.username}/followers`} onClick={e => { e.stopPropagation() }}><span className="h5">Followers : {Props.info.followers}</span></Link>
-            <button type="button" className="btn btn-light" style={{ color: "white", position: "absolute", top: "70%", left: "75%", width: "20%", backgroundColor: "cadetblue" }} onClick={(e) => { e.stopPropagation(); followaction(); }}>{Props.info.ifollow ? "unfollow" : "follow"}</button>
+            <Link className="text-decoration-none me-3" to={`/${Props.info.username}/followers`} onClick={e => { e.stopPropagation() }}><span className="h5">Followers : {Props.info.followers}</span></Link>
+            {Props.info.ifollow ? <button type="button" className="btn btn-light" style={{ borderRadius: "20px", color: "white", position: "absolute", top: "70%", left: "75%", width: "20%", backgroundColor: "#00acee" }} onClick={(e) => { e.stopPropagation(); followaction(); }}>Unfollow</button>
+                :
+                <button type="button" className="btn" style={{ borderRadius: "20px", color: "#00acee", position: "absolute", top: "70%", left: "75%", width: "20%", backgroundColor: "#f8f9fa", border: "1px solid #00acee" }} onClick={(e) => { e.stopPropagation(); followaction(); }}>Follow</button>}
+
+            {/* <button type="button" className="btn btn-light" style={{ color: "white", position: "absolute", top: "70%", left: "75%", width: "20%", backgroundColor: "#00acee" }} onClick={(e) => { e.stopPropagation(); followaction(); }}>{Props.info.ifollow ? "Unfollow" : "Follow"}</button> */}
         </div >
     )
 }

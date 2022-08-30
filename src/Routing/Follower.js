@@ -22,7 +22,7 @@ function Follower() {
                     'Authorization': 'Bearer ' + String(tokenaccess)
                 }
             })
-                .then((res) => { console.log(res.data, res.status); setUsers(res.data.followerslist) })
+                .then((res) => { setUsers(res.data.followerslist) })
                 .catch((err) => console.log(err))
         }, 1000);
 
@@ -38,15 +38,12 @@ function Follower() {
     return (
         <>
             <NavBar />
-            <div className="followers p-2 w-50 mx-auto mt-5 mb-5 rounded" style={{ backgroundColor: "ghostwhite", color: "#777" }}>
+            <div className="followers p-2 w-50 mx-auto mt-5 mb-5 rounded" style={{ backgroundColor: "ghostwhite", color: "#777" , minHeight : "300px" }}>                
                 {users.map((e) => {
                     return (
-                        <User key={e.id} info={e} />
+                        e ?  <User key={e.id} info={e} /> : <p>No Users</p>
                     )
                 })}
-
-
-
             </div>
         </>
     )

@@ -19,7 +19,7 @@ function MessageExplore() {
                 'Authorization': 'Bearer ' + String(tokenaccess)
             }
         })
-            .then((res) => { console.log(res.data, res.status); setUsers(res.data.userlist) })
+            .then((res) => { setUsers(res.data.userlist) })
             .catch((err) => console.log(err))
 
 

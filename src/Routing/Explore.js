@@ -20,14 +20,9 @@ function Explore() {
                     'Authorization': 'Bearer ' + String(tokenaccess)
                 }
             })
-                .then((res) => { console.log(res.data, res.status); setUsers(res.data.userlist) })
+                .then((res) => { setUsers(res.data.userlist) })
                 .catch((err) => console.log(err))
         }, 1000);
-
-
-
-
-
 
         return () => clearInterval(interval);
     }, [])
@@ -37,14 +32,12 @@ function Explore() {
         <>
             <NavBar />
             <div className="followers p-2 w-50 mx-auto mt-5 mb-5 rounded" style={{ backgroundColor: "ghostwhite", color: "#777" }}>
-
-
                 {users.map((e) => {
                     return (
                         <User key={e.id} info={e} />
                     )
                 })}
-
+                
             </div>
         </>
     )

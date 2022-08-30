@@ -10,7 +10,7 @@ function MessageUser(Props) {
     //follow action
 
     return (
-        <div className="follower m-4 p-3" style={{ border: "2px solid grey", borderRadius: "4px", position: "relative" }} onClick={() => { window.location.href = `/message/${Props.info.username}` }}>
+        <div className="follower m-4 p-3" style={{ border: "1px solid lightskyblue", borderRadius: "4px", position: "relative" }} onClick={() => { window.location.href = `/message/${Props.info.username}` }}>
             {Props.info.propic ? (
                 <img src={`https://mini-twitter-app2.herokuapp.com${Props.info.propic}`} style={{ width: "80px", height: "80px", borderRadius: "80px" }} />
             ) : (

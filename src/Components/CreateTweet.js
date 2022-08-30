@@ -44,7 +44,7 @@ function CreateTweet() {
                 'Authorization': 'Bearer ' + String(tokenaccess)
             }
         })
-            .then((res) => { console.log(res.data, res.status); e.target.reset(); setshowCreate(false); })
+            .then((res) => { e.target.reset(); setshowCreate(false); })
             .catch((err) => console.log(err))
     }
 
@@ -52,7 +52,7 @@ function CreateTweet() {
     return (
         <div className={showCreate ? "d-block" : "d-none"}>
             <form onSubmit={e => formHandle(e)} className=" p-2 text-center text-white" encType=" multipart /form-data"
-                style={{ position: "fixed", zIndex: "1000", left: "50%", top: "50%", transform: "translate(-50%,-50%)", width: "500px", height: "350px", backgroundColor: "#36a2b9", borderRadius: "15px" }}>
+                style={{ position: "fixed", zIndex: "1000", left: "50%", top: "50%", transform: "translate(-50%,-50%)", width: "500px", height: "350px", backgroundColor: "#00acee", borderRadius: "15px" }}>
                 <div className="d-flex align-items-center flex-column">
                     <h2>Create Tweet</h2>
                     <textarea style={{ width: "300px", height: "200px", resize: "none", borderRadius: "25px", textAlign: "center", fontSize: "25px" }} name='content' value={userReg.content} onChange={e => userHandle(e)} />

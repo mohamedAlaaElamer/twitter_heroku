@@ -34,7 +34,7 @@ function Tweets(Props) {
                     'Authorization': 'Bearer ' + String(tokenaccess)
                 }
             })
-                .then((res) => { setReply(""); console.log(res.data, res.status); })
+                .then((res) => { setReply(""); })
                 .catch((err) => { setReply(""); console.log(err) })
         }
     }
@@ -46,13 +46,12 @@ function Tweets(Props) {
 
     const showForm = (e) => {
         let reply = e.target.parentElement.parentElement.parentElement.nextElementSibling
+        console.log(reply)
         if (showform === true) {
-            console.log("hi")
             reply.style.display = 'none'
             setshowform(false)
         }
         else {
-            console.log(reply)
             reply.style.display = 'block'
             setshowform(true)
 
@@ -77,27 +76,27 @@ function Tweets(Props) {
     return (
         <>
             <div className="tweet p-1" id={Props.content.id} style={{
-                border: "2px solid lightgrey", borderRadius: "15px", width: "75%", margin: "auto",
-                marginBottom: "20px", marginTop: "20px", boxShadow: "2px 2px 2px 2px deepskyblue"
+                border: "2px solid lightgrey", borderRadius: "15px", width: "60%", margin: "auto",
+                marginBottom: "20px", marginTop: "20px", boxShadow: "2px 2px 2px 2px #00acee"
             }}>
                 <div className="user_info d-flex p-4" >
                     {Props.content.userpic && (
-                        <Link to={`${Props.content.username}`}><img src={`https://mini-twitter-app2.herokuapp.com${Props.content.userpic}`} alt="Cinque Terre" style={{ maxWidth: "100%", width: "60px", height: "60px", borderRadius: "30px" }} /></Link>
+                        <Link to={`/${Props.content.username}`}><img src={`https://mini-twitter-app2.herokuapp.com${Props.content.userpic}`} alt="Cinque Terre" style={{ maxWidth: "100%", width: "60px", height: "60px", borderRadius: "30px" }} /></Link>
                     )}
                     <h3 className="ms-2">{Props.content.username}</h3>
                 </div>
                 <div className="content mb-2 text-center">
                     <p className="h3">{Props.content.content}</p>
                     {Props.content.image && (
-                        <img src={`https://mini-twitter-app2.herokuapp.com${Props.content.image}`} className="rounded mx-auto" alt="Cinque Terre" width="50%" />
+                        <img src={`https://mini-twitter-app2.herokuapp.com${Props.content.image}`} className="rounded mx-auto" alt="Cinque Terre" width="35%" />
                     )}
                 </div>
 
                 {Props.content.parent_user && (
-                    <div className="parent p-4" style={{ border: "1px solid lightskyblue", borderRadius: "15px", width: "75%", margin: "auto" }}>
+                    <div className="parent p-4" style={{ border: "1px solid lightskyblue", borderRadius: "15px", width: "60%", margin: "auto" }}>
                         <div className="user_info d-flex p-2">
                             {Props.content.parent_user_image && (
-                                <Link to={`${Props.content.parent_user}`}>
+                                <Link to={`/${Props.content.parent_user}`}>
                                     <img src={`https://mini-twitter-app2.herokuapp.com${Props.content.parent_user_image}`} alt="Cinque Terre" style={{ maxWidth: "100%", width: "60px", height: "60px", borderRadius: "30px" }} />
                                 </Link>
                             )}
@@ -107,7 +106,7 @@ function Tweets(Props) {
                             <p className="h3">{Props.content.parent_content}</p>
 
                             {Props.content.parent_image && (
-                                <img src={`https://mini-twitter-app2.herokuapp.com${Props.content.parent_image}`} className="rounded mx-auto" alt="Cinque Terre" width="50%" />
+                                <img src={`https://mini-twitter-app2.herokuapp.com${Props.content.parent_image}`} className="rounded mx-auto" alt="Cinque Terre" width="35%" />
                             )}
 
                         </div>
@@ -133,14 +132,7 @@ function Tweets(Props) {
                     </div>
                 </div>
 
-                <div className="comments" style={{ display: "none", marginBottom: "15px" }}>
-                    <form style={{ width: "50%", margin: "auto" }} onSubmit={e => formhandler(e)}>
-                        <div className="">
-                            <textarea className="form-control mb-3" id="exampleFormControlTextarea1" style={{ resize: "none" }} value={reply} rows="3" name='replymessage' onChange={(e) => setReply(e.target.value)} />
-                        </div>
-                        <button type="submit" style={{ width: "50%", backgroundColor: "#36a2b9", borderRadius: "25px" }} className="btn text-light">Reply</button>
-                    </form>
-
+                <div style={{ display: 'none' }}>
                     <div className="commentshow px-2">
                         <div className="d-grid gap-2 pe-5 mt-2">
                             {Props.content.reply.map((e) => {
@@ -164,6 +156,14 @@ function Tweets(Props) {
                         </div>
                     </div>
 
+                    <div className="comments" style={{ marginBottom: "15px" }}>
+                        <form style={{ width: "75%", marginLeft: "90px", padding: "20px" }} onSubmit={e => formhandler(e)}>
+                            <div>
+                                <textarea className="form-control mb-3" id="exampleFormControlTextarea1" style={{ resize: "none", height: "65px", borderRadius: "15px" }} value={reply} rows="3" name='replymessage' onChange={(e) => setReply(e.target.value)} />
+                            </div>
+                            <button type="submit" style={{ width: "20%", backgroundColor: "#00acee", borderRadius: "25px" }} className="btn text-light">Reply</button>
+                        </form>
+                    </div>
                 </div>
             </div>
             <CreateRetweetContext.Provider value={{ makeRetweet, setmakeRetweet }}>

@@ -24,7 +24,7 @@ function Replies() {
                     'Authorization': 'Bearer ' + String(tokenaccess)
                 }
             })
-                .then((res) => { console.log(res.data, res.status); setTweets(res.data.tweetlist); setUser(res.data.userinfo) })
+                .then((res) => { setTweets(res.data.tweetlist); setUser(res.data.userinfo) })
                 .catch((err) => console.log(err))
         }, 1000);
 
@@ -46,7 +46,7 @@ function Replies() {
                 'Authorization': 'Bearer ' + String(tokenaccess)
             }
         })
-            .then((res) => { console.log(res.data, res.status); })
+            .then((res) => {})
             .catch((err) => console.log(err))
     }
 
@@ -71,9 +71,9 @@ function Replies() {
                             <Link className="text-decoration-none ms-5 me-5" to={`/${Params.username}/replies`}><span className="h5">Replies</span></Link>
                             <Link className="text-decoration-none" to={`/${Params.username}/likes`}><span className="h5">Likes</span></Link>
                             {JSON.parse(localStorage.getItem("userinfo")).username === Params.username ? (
-                                <button type="button" className="btn btn-light" style={{ color: "white", position: "absolute", top: "40%", left: "75%", width: "20%", backgroundColor: "cadetblue" }} onClick={() => { window.location.href = "/profile" }}>Edit</button>) : (
-                                <button type="button" className="btn btn-light" style={{ color: "white", position: "absolute", top: "40%", left: "75%", width: "20%", backgroundColor: "cadetblue" }} onClick={() => { followaction() }}>{user.ifollow ? "unfollow" : "follow"}</button>)}
-
+                                <button type="button" className="btn btn-light" style={{ color: "white", position: "absolute", top: "40%", left: "75%", width: "15%", backgroundColor: "#00acee" }} onClick={() => { window.location.href = "/profile" }}>Edit</button>)
+                                 : user.ifollow ? <button type="button" className="btn btn-light" style={{  borderRadius : "20px" , color: "white", position: "absolute", top: "40%", left: "75%", width: "15%", backgroundColor: "#00acee" }} onClick={() => { followaction() }}>Unfollow</button> : 
+                                 <button type="button" className="btn btn-light" style={{ border : "2px solid #00acee" , borderRadius : "20px" , color: "#00acee", position: "absolute", top: "40%", left: "75%", width: "15%", backgroundColor: "white" }} onClick={() => { followaction() }}>Follow</button>}   
                         </div>
                     </div>
                     {tweets.map((e) => {
