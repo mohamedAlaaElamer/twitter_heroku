@@ -12,7 +12,7 @@ function TweetsList() {
     //fetch tweets each sec
     useEffect(() => {
         const interval = setInterval(() => {
-            axios.get('https://mini-twitter-app2.herokuapp.com/getalltweets/', {
+            axios.get('https://mini-twitter-app-deploy.herokuapp.com/getalltweets/', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + String(tokenaccess)

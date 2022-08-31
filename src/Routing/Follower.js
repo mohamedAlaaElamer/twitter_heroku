@@ -16,7 +16,7 @@ function Follower() {
     //follow action
     useEffect(() => {
         const interval = setInterval(() => {
-            axios.get(`https://mini-twitter-app2.herokuapp.com/follower/${params.username}`, {
+            axios.get(`https://mini-twitter-app-deploy.herokuapp.com/follower/${params.username}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + String(tokenaccess)
@@ -38,10 +38,10 @@ function Follower() {
     return (
         <>
             <NavBar />
-            <div className="followers p-2 w-50 mx-auto mt-5 mb-5 rounded" style={{ backgroundColor: "ghostwhite", color: "#777" , minHeight : "300px" }}>                
+            <div className="followers p-2 w-50 mx-auto mt-5 mb-5 rounded" style={{ backgroundColor: "ghostwhite", color: "#777", minHeight: "300px" }}>
                 {users.map((e) => {
                     return (
-                        e ?  <User key={e.id} info={e} /> : <p>No Users</p>
+                        e ? <User key={e.id} info={e} /> : <p>No Users</p>
                     )
                 })}
             </div>

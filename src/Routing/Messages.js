@@ -19,7 +19,7 @@ function Messages() {
         if (params.username) {
 
             const interval = setInterval(() => {
-                axios.get(`https://mini-twitter-app2.herokuapp.com/divmessages/${params.username}`, {
+                axios.get(`https://mini-twitter-app-deploy.herokuapp.com/divmessages/${params.username}`, {
                     headers: {
                         'Accept': 'application/json',
                         "Content-Type": "multipart/form-data",
@@ -45,7 +45,7 @@ function Messages() {
         //checking state
         let from1 = new FormData(e.target)
         let tokenaccess = JSON.parse(localStorage.getItem("auth")).access
-        axios.post(`https://mini-twitter-app2.herokuapp.com/sendmessageto/${params.username}`, from1, {
+        axios.post(`https://mini-twitter-app-deploy.herokuapp.com/sendmessageto/${params.username}`, from1, {
             headers: {
                 'Accept': 'application/json',
                 "Content-Type": "multipart/form-data",
@@ -67,9 +67,9 @@ function Messages() {
                     {params.username && (
                         <>
                             <div>
-                                <div className="message d-flex align-items-center" style={{ width: "50%", margin: "auto", marginTop: "10px", marginBottom: "10px" }}>
+                                <div className="message d-flex align-items-center" style={{ width: "50%", margin: "auto", marginTop: "10px", marginBottom: "10px" }} onClick={() => { window.location.href = `/${params.username}` }}>
                                     {userimage ? (
-                                        <img src={`https://mini-twitter-app2.herokuapp.com${userimage}`} style={{ width: "80px", height: "80px", borderRadius: "80px", marginLeft: "15px", marginRight: "15px" }} />
+                                        <img src={`${userimage}`} style={{ width: "80px", height: "80px", borderRadius: "80px", marginLeft: "15px", marginRight: "15px" }} />
                                     ) : (
                                         <img src="https://via.placeholder.com/350x150" style={{ width: "80px", height: "80px", borderRadius: "80px", marginLeft: "15px", marginRight: "15px" }} />
                                     )}
@@ -89,9 +89,9 @@ function Messages() {
                                             return (
                                                 <>
                                                     <p style={{
-                                                        maxWidth: "100%", minWidth : "100px" , textAlign :"center", wordWrap: "break-word", backgroundColor: e.from === JSON.parse(localStorage.getItem("userinfo")).username ? "#41464b" : "#00acee",
-                                                         borderRadius: "25px", width: "fit-content", color: e.from === JSON.parse(localStorage.getItem("userinfo")).username ? "#f8f9fa" : "white", textAlign: "left", padding: "15px",
-                                                        alignSelf: e.from === JSON.parse(localStorage.getItem("userinfo")).username ? "flex-end" : "flex-start" , textAlign: "center"
+                                                        maxWidth: "100%", minWidth: "100px", textAlign: "center", wordWrap: "break-word", backgroundColor: e.from === JSON.parse(localStorage.getItem("userinfo")).username ? "#41464b" : "#00acee",
+                                                        borderRadius: "25px", width: "fit-content", color: e.from === JSON.parse(localStorage.getItem("userinfo")).username ? "#f8f9fa" : "white", textAlign: "left", padding: "15px",
+                                                        alignSelf: e.from === JSON.parse(localStorage.getItem("userinfo")).username ? "flex-end" : "flex-start", textAlign: "center"
                                                     }}>
                                                         {e.message}
                                                     </p>
@@ -103,7 +103,7 @@ function Messages() {
                                     </div>
                                     <form style={{ backgroundColor: "#00acee", textAlign: "center", padding: "20px", borderRadius: "25px", display: "flex", alignItems: "center" }} onSubmit={e => { formhandler(e) }}>
                                         <textarea style={{ width: "100%", minHeight: "50%", resize: "none", borderRadius: "25px", textAlign: "center", fontSize: "25px" }} name='content' value={mess} onChange={(e) => setMess(e.target.value)} />
-                                        <input className="btn btn-light" style={{ color: '#00acee', marginLeft: "15px", width: "100px", height: "50px" , borderRadius : "50px" }} type={'submit'} value="Send" />
+                                        <input className="btn btn-light" style={{ color: '#00acee', marginLeft: "15px", width: "100px", height: "50px", borderRadius: "50px" }} type={'submit'} value="Send" />
                                     </form>
                                 </div>
 

@@ -27,7 +27,7 @@ function Tweets(Props) {
             let from1 = new FormData()
             from1.append('message', reply)
             let tokenaccess = JSON.parse(localStorage.getItem("auth")).access
-            axios.post(`https://mini-twitter-app2.herokuapp.com/createreply/${Props.content.id}`, from1, {
+            axios.post(`https://mini-twitter-app-deploy.herokuapp.com/createreply/${Props.content.id}`, from1, {
                 headers: {
                     'Accept': 'application/json',
                     "Content-Type": "multipart/form-data",
@@ -62,7 +62,7 @@ function Tweets(Props) {
     //like form handler
     const likehandler = () => {
         let tokenaccess = JSON.parse(localStorage.getItem("auth")).access
-        axios.post(`https://mini-twitter-app2.herokuapp.com/tweetaction/${Props.content.id}`, { "action": "like" }, {
+        axios.post(`https://mini-twitter-app-deploy.herokuapp.com/tweetaction/${Props.content.id}`, { "action": "like" }, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + String(tokenaccess)
@@ -79,25 +79,25 @@ function Tweets(Props) {
                 border: "2px solid lightgrey", borderRadius: "15px", width: "60%", margin: "auto",
                 marginBottom: "20px", marginTop: "20px", boxShadow: "2px 2px 2px 2px #00acee"
             }}>
-                <div className="user_info d-flex p-4" >
+                <div className="user_info d-flex p-4" onClick={() => { window.location.href = `/${Props.content.username}` }}>
                     {Props.content.userpic && (
-                        <Link to={`/${Props.content.username}`}><img src={`https://mini-twitter-app2.herokuapp.com${Props.content.userpic}`} alt="Cinque Terre" style={{ maxWidth: "100%", width: "60px", height: "60px", borderRadius: "30px" }} /></Link>
+                        <img src={`${Props.content.userpic}`} alt="Cinque Terre" style={{ maxWidth: "100%", width: "60px", height: "60px", borderRadius: "30px" }} />
                     )}
                     <h3 className="ms-2">{Props.content.username}</h3>
                 </div>
                 <div className="content mb-2 text-center">
                     <p className="h3">{Props.content.content}</p>
                     {Props.content.image && (
-                        <img src={`https://mini-twitter-app2.herokuapp.com${Props.content.image}`} className="rounded mx-auto" alt="Cinque Terre" width="35%" />
+                        <img src={`${Props.content.image}`} className="rounded mx-auto" alt="Cinque Terre" width="35%" />
                     )}
                 </div>
 
                 {Props.content.parent_user && (
                     <div className="parent p-4" style={{ border: "1px solid lightskyblue", borderRadius: "15px", width: "60%", margin: "auto" }}>
-                        <div className="user_info d-flex p-2">
+                        <div className="user_info d-flex p-2" onClick={() => { window.location.href = `/${Props.content.parent_user}` }}>
                             {Props.content.parent_user_image && (
                                 <Link to={`/${Props.content.parent_user}`}>
-                                    <img src={`https://mini-twitter-app2.herokuapp.com${Props.content.parent_user_image}`} alt="Cinque Terre" style={{ maxWidth: "100%", width: "60px", height: "60px", borderRadius: "30px" }} />
+                                    <img src={`${Props.content.parent_user_image}`} alt="Cinque Terre" style={{ maxWidth: "100%", width: "60px", height: "60px", borderRadius: "30px" }} />
                                 </Link>
                             )}
                             <h3 className="ms-2">{Props.content.parent_user}</h3>
@@ -106,7 +106,7 @@ function Tweets(Props) {
                             <p className="h3">{Props.content.parent_content}</p>
 
                             {Props.content.parent_image && (
-                                <img src={`https://mini-twitter-app2.herokuapp.com${Props.content.parent_image}`} className="rounded mx-auto" alt="Cinque Terre" width="35%" />
+                                <img src={`${Props.content.parent_image}`} className="rounded mx-auto" alt="Cinque Terre" width="35%" />
                             )}
 
                         </div>
@@ -138,13 +138,13 @@ function Tweets(Props) {
                             {Props.content.reply.map((e) => {
                                 return (
                                     <>
-                                        <div key={e.id} className="p-2 bg-light border h5 d-flex align-items-center rounded w-75 mx-auto mt-3">
+                                        <div key={e.id} className="p-2 bg-light border h5 d-flex align-items-center rounded w-75 mx-auto mt-3" onClick={() => { window.location.href = `/${e.by}` }}>
                                             {e.propic ? (
-                                                <img src={`https://mini-twitter-app2.herokuapp.com${e.propic}`} style={{ width: "80px", height: "80px", borderRadius: "80px", marginRight: "20px" }} />
+                                                <img src={`${e.propic}`} style={{ width: "80px", height: "80px", borderRadius: "80px", marginRight: "20px" }} />
                                             ) : (
                                                 <img src="https://via.placeholder.com/350x150" style={{ width: "80px", height: "80px", borderRadius: "80px", marginRight: "20px" }} />
                                             )}
-                                            <div className="mt-3">
+                                            <div className="mt-3" >
                                                 <p className="h4">{e.by} : </p>
                                                 <p className="h5">{e.message}</p>
                                             </div>

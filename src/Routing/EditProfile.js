@@ -87,7 +87,7 @@ function EditProfile() {
 
     let tokenaccess = JSON.parse(localStorage.getItem("auth")).access
     useEffect(() => {
-        axios.get(`https://mini-twitter-app2.herokuapp.com/editprofileinfo/${JSON.parse(localStorage.getItem("userinfo")).username}`, {
+        axios.get(`https://mini-twitter-app-deploy.herokuapp.com/editprofileinfo/${JSON.parse(localStorage.getItem("userinfo")).username}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + String(tokenaccess)
@@ -104,7 +104,7 @@ function EditProfile() {
         if (image) {
             console.log("chageimage")
             let form = new FormData(e.target)
-            axios.post('https://mini-twitter-app2.herokuapp.com/editprofile/', form, {
+            axios.post('https://mini-twitter-app-deploy.herokuapp.com/imagecloudprof/', form, {
                 headers: {
                     'Accept': 'application/json',
                     "Content-Type": "multipart/form-data",
@@ -115,7 +115,7 @@ function EditProfile() {
                 .catch((err) => console.log(err))
         }
         else {
-            axios.post('https://mini-twitter-app2.herokuapp.com/withoutimage/', Data, {
+            axios.post('https://mini-twitter-app-deploy.herokuapp.com/withoutimage/', Data, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + String(tokenaccess)
@@ -137,14 +137,14 @@ function EditProfile() {
                         <form onSubmit={e => chageprofile(e)} className="row g-3">
                             <div className="d-flex align-items-center" style={{ margin: "70px", position: 'relative' }}>
                                 {JSON.parse(localStorage.getItem("userinfo")).propic ? (
-                                    <img src={`https://mini-twitter-app2.herokuapp.com${JSON.parse(localStorage.getItem("userinfo")).propic}`} alt="" style={{ marginLeft: "15px", borderRadius: "80px", width: "150px", height: "150px" }} />
+                                    <img src={`${JSON.parse(localStorage.getItem("userinfo")).propic}`} alt="" style={{ marginLeft: "15px", borderRadius: "80px", width: "150px", height: "150px" }} />
                                 ) : (
                                     <img src="https://via.placeholder.com/350x150" alt="" style={{ marginLeft: "15px", borderRadius: "80px", width: "150px", height: "150px" }} />
                                 )}
 
                                 <div style={{ marginLeft: "25px" }}>
                                     <h1 >{JSON.parse(localStorage.getItem("userinfo")).username}</h1>
-                                    <button type="button" className="btn btn-light" style={{ color: "white", position: "absolute", top: "70%", left: "25%", width: "25%", backgroundColor: "#00acee" , borderRadius : "20px" }} onClick={(e) => { e.preventDefault(); onButtonClick(); }}>Change Pic</button>
+                                    <button type="button" className="btn btn-light" style={{ color: "white", position: "absolute", top: "70%", left: "25%", width: "25%", backgroundColor: "#00acee", borderRadius: "20px" }} onClick={(e) => { e.preventDefault(); onButtonClick(); }}>Change Pic</button>
                                 </div>
                                 <input type="file" ref={inputFile} name='propic' style={{ display: "none" }} onChange={e => getpic(e)} />
                             </div>
@@ -194,9 +194,9 @@ function EditProfile() {
                             </div>
                             <div>
 
-                                <input style={{ width: "45%", marginRight: "5%" , backgroundColor : "#00acee" , borderRadius : "20px" }} className="btn text-light" type="submit" value='Close' onClick={(e) => { e.preventDefault(); window.location.href = "/home" }} />
+                                <input style={{ width: "45%", marginRight: "5%", backgroundColor: "#00acee", borderRadius: "20px" }} className="btn text-light" type="submit" value='Close' onClick={(e) => { e.preventDefault(); window.location.href = "/home" }} />
 
-                                <input style={{ width: "45%", marginLeft: "5%" , backgroundColor : "#00acee" , borderRadius : "20px" }} className="btn text-light" type="submit" disabled={errors.FirstNameError || errors.LastNameError} value='Save' />
+                                <input style={{ width: "45%", marginLeft: "5%", backgroundColor: "#00acee", borderRadius: "20px" }} className="btn text-light" type="submit" disabled={errors.FirstNameError || errors.LastNameError} value='Save' />
                             </div>
 
 

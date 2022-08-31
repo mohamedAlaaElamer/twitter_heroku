@@ -18,7 +18,7 @@ function Replies() {
     //fetch tweets each sec
     useEffect(() => {
         const interval = setInterval(() => {
-            axios.get(`https://mini-twitter-app2.herokuapp.com/reply/${Params.username}`, {
+            axios.get(`https://mini-twitter-app-deploy.herokuapp.com/reply/${Params.username}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + String(tokenaccess)
@@ -40,13 +40,13 @@ function Replies() {
 
     //follow action
     const followaction = () => {
-        axios.get(`https://mini-twitter-app2.herokuapp.com/follow/${Params.username}`, {
+        axios.get(`https://mini-twitter-app-deploy.herokuapp.com/follow/${Params.username}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + String(tokenaccess)
             }
         })
-            .then((res) => {})
+            .then((res) => { })
             .catch((err) => console.log(err))
     }
 
@@ -59,7 +59,7 @@ function Replies() {
                         {!user.propic ? (
                             <img src="https://via.placeholder.com/350x150" alt="" style={{ marginLeft: "15px", borderRadius: "80px", width: "150px", height: "150px" }} />
                         ) : (
-                            <img src={`https://mini-twitter-app2.herokuapp.com${user.propic}`} alt="" style={{ marginLeft: "15px", borderRadius: "80px", width: "150px", height: "150px" }} />
+                            <img src={`${user.propic}`} alt="" style={{ marginLeft: "15px", borderRadius: "80px", width: "150px", height: "150px" }} />
                         )}
 
                         <div style={{ marginLeft: "25px" }}>
@@ -72,8 +72,8 @@ function Replies() {
                             <Link className="text-decoration-none" to={`/${Params.username}/likes`}><span className="h5">Likes</span></Link>
                             {JSON.parse(localStorage.getItem("userinfo")).username === Params.username ? (
                                 <button type="button" className="btn btn-light" style={{ color: "white", position: "absolute", top: "40%", left: "75%", width: "15%", backgroundColor: "#00acee" }} onClick={() => { window.location.href = "/profile" }}>Edit</button>)
-                                 : user.ifollow ? <button type="button" className="btn btn-light" style={{  borderRadius : "20px" , color: "white", position: "absolute", top: "40%", left: "75%", width: "15%", backgroundColor: "#00acee" }} onClick={() => { followaction() }}>Unfollow</button> : 
-                                 <button type="button" className="btn btn-light" style={{ border : "2px solid #00acee" , borderRadius : "20px" , color: "#00acee", position: "absolute", top: "40%", left: "75%", width: "15%", backgroundColor: "white" }} onClick={() => { followaction() }}>Follow</button>}   
+                                : user.ifollow ? <button type="button" className="btn btn-light" style={{ borderRadius: "20px", color: "white", position: "absolute", top: "40%", left: "75%", width: "15%", backgroundColor: "#00acee" }} onClick={() => { followaction() }}>Unfollow</button> :
+                                    <button type="button" className="btn btn-light" style={{ border: "2px solid #00acee", borderRadius: "20px", color: "#00acee", position: "absolute", top: "40%", left: "75%", width: "15%", backgroundColor: "white" }} onClick={() => { followaction() }}>Follow</button>}
                         </div>
                     </div>
                     {tweets.map((e) => {

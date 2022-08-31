@@ -81,7 +81,7 @@ function Login() {
     const formHandle = (e) => {
         e.preventDefault();
         //checking state
-        axios.post('https://mini-twitter-app2.herokuapp.com/api/token/', userLog, {
+        axios.post('https://mini-twitter-app-deploy.herokuapp.com/api/token/', userLog, {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -89,7 +89,7 @@ function Login() {
             .then((res) => {
                 console.log(res.data); if (res.status === 200) {
                     localStorage.setItem("auth", JSON.stringify(res.data));
-                    axios.get('https://mini-twitter-app2.herokuapp.com/userinfo/', {
+                    axios.get('https://mini-twitter-app-deploy.herokuapp.com/userinfo/', {
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': 'Bearer ' + String(res.data.access)
@@ -99,7 +99,7 @@ function Login() {
                 }
             })
             .catch((err) => {
-                 if (err.response.status === 401) {
+                if (err.response.status === 401) {
                     setErrors({
                         ...errors,
                         PasswordError: "Wrong UserName or Password"

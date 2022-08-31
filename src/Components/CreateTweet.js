@@ -37,7 +37,7 @@ function CreateTweet() {
         //checking state
         let from1 = new FormData(e.target)
         let tokenaccess = JSON.parse(localStorage.getItem("auth")).access
-        axios.post('https://mini-twitter-app2.herokuapp.com/creattweet/', from1, {
+        axios.post('https://mini-twitter-app-deploy.herokuapp.com/creattweet/', from1, {
             headers: {
                 'Accept': 'application/json',
                 "Content-Type": "multipart/form-data",

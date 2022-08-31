@@ -18,7 +18,7 @@ function ParticularTweet() {
     //follow action
     useEffect(() => {
         const interval = setInterval(() => {
-            axios.get(`https://mini-twitter-app2.herokuapp.com/gettweetbyid/${params.id}`, {
+            axios.get(`https://mini-twitter-app-deploy.herokuapp.com/gettweetbyid/${params.id}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + String(tokenaccess)

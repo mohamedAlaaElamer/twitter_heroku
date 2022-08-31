@@ -14,7 +14,7 @@ function Explore() {
     //follow action
     useEffect(() => {
         const interval = setInterval(() => {
-            axios.get(`https://mini-twitter-app2.herokuapp.com/explore/`, {
+            axios.get(`https://mini-twitter-app-deploy.herokuapp.com/explore/`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + String(tokenaccess)
@@ -37,7 +37,7 @@ function Explore() {
                         <User key={e.id} info={e} />
                     )
                 })}
-                
+
             </div>
         </>
     )

@@ -40,7 +40,7 @@ function NavBar() {
 
 
         const interval = setInterval(() => {
-            axios.get(`https://mini-twitter-app2.herokuapp.com/getallmessages/`, {
+            axios.get(`https://mini-twitter-app-deploy.herokuapp.com/getallmessages/`, {
                 headers: {
                     'Accept': 'application/json',
                     "Content-Type": "multipart/form-data",
@@ -97,7 +97,7 @@ function NavBar() {
                         <div className="user_info d-flex nav-link" style={{ padding: "0" }}>
                             <Link className="nav-link text-light d-flex align-items-center" to={`/${JSON.parse(localStorage.getItem("userinfo")).username}`}>
                                 {userPropic && (
-                                    <img style={{ maxWidth: "100%", width: "50px", height: "50px", borderRadius: "30px" }} src={`https://mini-twitter-app2.herokuapp.com${userPropic}`} alt="Cinque Terre" />
+                                    <img style={{ maxWidth: "100%", width: "50px", height: "50px", borderRadius: "30px" }} src={userPropic} alt="Cinque Terre" />
                                 )}
                                 <h3 className="ms-2 text-light">{JSON.parse(localStorage.getItem("userinfo")).username}</h3>
                             </Link>
@@ -114,7 +114,7 @@ function NavBar() {
                                 return (
                                     <div className="message d-flex" style={{ borderBottom: "1px solid lightgray", padding: "5px", paddingTop: "10px" }} onClick={() => { window.location.href = `/message/${e.from}` }}>
                                         {e.propic ? (
-                                            <img src={`https://mini-twitter-app2.herokuapp.com${e.propic}`} style={{ width: "80px", height: "80px", borderRadius: "80px", marginLeft: "15px", marginRight: "15px" }} />
+                                            <img src={e.propic} style={{ width: "80px", height: "80px", borderRadius: "80px", marginLeft: "15px", marginRight: "15px" }} />
                                         ) : (
                                             <img src="https://via.placeholder.com/350x150" style={{ width: "80px", height: "80px", borderRadius: "80px", marginLeft: "15px", marginRight: "15px" }} />
                                         )}
@@ -136,17 +136,33 @@ function NavBar() {
                             <h3 className="m-3">Notifications</h3>
                             {not.map((e) => {
                                 return (
-                                    <div className="message d-flex" style={{ borderBottom: "1px solid lightgray", padding: "5px", paddingTop: "10px" }} onClick={() => { window.location.href = `/tweet/${e.id}` }}>
-                                        {e.propic ? (
-                                            <img src={`https://mini-twitter-app2.herokuapp.com${e.propic}`} style={{ width: "80px", height: "80px", borderRadius: "80px", marginLeft: "15px", marginRight: "15px" }} />
+                                    <>
+                                        {e.id ? (
+                                            <div className="message d-flex" onClick={() => { window.location.href = `/tweet/${e.id}` }}>
+                                                {e.propic ? (
+                                                    <img src={`${e.propic}`} style={{ width: "80px", height: "80px", borderRadius: "80px", marginLeft: "15px", marginRight: "15px" }} />
+                                                ) : (
+                                                    <img src="https://via.placeholder.com/350x150" style={{ width: "80px", height: "80px", borderRadius: "80px", marginLeft: "15px", marginRight: "15px" }} />
+                                                )}
+                                                <div>
+                                                    <h2>{e.username}</h2>
+                                                    <p style={{ fontSize: "20px" }}>{e.action} your tweet</p>
+                                                </div>
+                                            </div>
                                         ) : (
-                                            <img src="https://via.placeholder.com/350x150" style={{ width: "80px", height: "80px", borderRadius: "80px", marginLeft: "15px", marginRight: "15px" }} />
+                                            <div className="message d-flex" onClick={() => { window.location.href = `/${e.username}` }}>
+                                                {e.propic ? (
+                                                    <img src={`${e.propic}`} style={{ width: "80px", height: "80px", borderRadius: "80px", marginLeft: "15px", marginRight: "15px" }} />
+                                                ) : (
+                                                    <img src="https://via.placeholder.com/350x150" style={{ width: "80px", height: "80px", borderRadius: "80px", marginLeft: "15px", marginRight: "15px" }} />
+                                                )}
+                                                <div>
+                                                    <h2>{e.username}</h2>
+                                                    <p style={{ fontSize: "20px" }}>{e.action} you</p>
+                                                </div>
+                                            </div>
                                         )}
-                                        <div>
-                                            <h2>{e.username}</h2>
-                                            <p style={{ fontSize: "20px" }}>{e.action} your tweet</p>
-                                        </div>
-                                    </div>
+                                    </>
                                 )
                             })}
                         </div>

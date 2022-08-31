@@ -37,14 +37,14 @@ function CreateRetweet(Props) {
         //checking state
         let from1 = new FormData(e.target)
         let tokenaccess = JSON.parse(localStorage.getItem("auth")).access
-        axios.post(`https://mini-twitter-app2.herokuapp.com/creatretweet/${Props.id}`, from1, {
+        axios.post(`https://mini-twitter-app-deploy.herokuapp.com/creatretweet/${Props.id}`, from1, {
             headers: {
                 'Accept': 'application/json',
                 "Content-Type": "multipart/form-data",
                 'Authorization': 'Bearer ' + String(tokenaccess)
             }
         })
-            .then((res) => {  e.target.reset(); setmakeRetweet(false); })
+            .then((res) => { e.target.reset(); setmakeRetweet(false); })
             .catch((err) => console.log(err))
     }
 
