@@ -63,8 +63,6 @@ function Register() {
                         "This Field is Required" :
                         e.target.value.length < 3 ?
                             "Minimum Length is 3 charachters" :
-                            e.target.value.indexOf(' ') >= 0 ?
-                                "Username Cant Have Spaces" :
                                 null
 
             })

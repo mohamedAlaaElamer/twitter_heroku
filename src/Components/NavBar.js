@@ -86,7 +86,6 @@ function NavBar() {
                         <Link to={"/home"}>
                             <FontAwesomeIcon icon="fa-brands fa-twitter" className="text-light" style={{ fontSize: "55px", margin: "10px" }} />
                         </Link>
-                        {/* <span className="h3 text-light">MiniTwitter</span> */}
                         <Link className="nav-link text-light h3" to="/home">MiniTwitter</Link>
                     </li>
                 </ul>
@@ -108,7 +107,9 @@ function NavBar() {
                         {mes.length - parseInt(localStorage.getItem("meslength")) > 0 ? <span style={{ position: 'absolute', left: '35px', backgroundColor: 'white', color: '#00acee', width: '22px', height: '25px', textAlign: 'center', borderRadius: '50%' }}>{mes.length - parseInt(localStorage.getItem("meslength"))}</span> : null}
 
                         {/* <button type="button" className={`btn ${makediffmes ? " btn-warning" : "btn-light"} btn-outline-dark `} style={{ color: "#36a2b9" }} onClick={() => { setmakediffmes(false); setShowNot(false); setShowMessage(!ShowMessage); localStorage.setItem("meslength", mes.length); }}>Messages</button> */}
-                        <div className={ShowMessage ? "d-block" : "d-none"} style={{ position: "absolute", width: "400px", height: "600px", left: "-200px", top: "75px", overflowX: "auto", backgroundColor: "#00acee", zIndex: "2", color: "whitesmoke", borderRadius: "6px" }}>
+                        <div className={ShowMessage ? "d-block" : "d-none"} style={{ position: "absolute", width: "400px", height: "600px", 
+                        left: "-200px", top: "75px", overflowX: "auto", backgroundColor: "ghostwhite", zIndex: "2",
+                         color: "cadetblue", borderRadius: "6px" , border : "1px solid" }}>
                             <h3 className="m-3">Messages</h3>
                             {mes.map((e) => {
                                 return (
@@ -132,19 +133,19 @@ function NavBar() {
                         <FontAwesomeIcon icon={faBell} style={{ fontSize: "25px", margin: "15px", cursor: "pointer" }} onClick={() => { setmakediffnot(false); setShowMessage(false); setShowNot(!ShowNot); setSeenNot(true); localStorage.setItem("notlength", not.length); }} />
                         {not.length - parseInt(localStorage.getItem("notlength")) > 0 ? <span style={{ position: 'absolute', left: '28px', backgroundColor: 'white', color: '#00acee', width: '22px', height: '25px', textAlign: 'center', borderRadius: '50%' }}>{not.length - parseInt(localStorage.getItem("notlength"))}</span> : null}
                         {/* <button type="button" className={`btn ${makediffnot ? "btn-warning" : "btn-light"} ms-2 me-2 btn-outline-dark`} style={{ color: "#36a2b9" }} onClick={() => { setmakediffnot(false); setShowMessage(false); setShowNot(!ShowNot); localStorage.setItem("notlength", not.length); }} >Notifications</button> */}
-                        <div className={ShowNot ? "d-block" : "d-none"} style={{ position: "absolute", width: "400px", height: "600px", left: "-255px", top: "75px", overflowX: "auto", backgroundColor: "#00acee", zIndex: "2", color: "whitesmoke", borderRadius: "6px" }}>
+                        <div className={ShowNot ? "d-block" : "d-none"} style={{ position: "absolute", width: "400px", height: "600px", left: "-255px", top: "75px", overflowX: "auto", backgroundColor: "ghostwhite", zIndex: "2", color: "cadetblue", borderRadius: "6px" , border : "1px solid" }}>
                             <h3 className="m-3">Notifications</h3>
                             {not.map((e) => {
                                 return (
                                     <>
                                         {e.id ? (
-                                            <div className="message d-flex" onClick={() => { window.location.href = `/tweet/${e.id}` }}>
+                                            <div className="message d-flex" style={{ borderBottom: "1px solid lightgray", padding: "5px", paddingTop: "10px" }} onClick={() => { window.location.href = `/tweet/${e.id}` }}>
                                                 {e.propic ? (
                                                     <img src={`${e.propic}`} style={{ width: "80px", height: "80px", borderRadius: "80px", marginLeft: "15px", marginRight: "15px" }} />
                                                 ) : (
                                                     <img src="https://via.placeholder.com/350x150" style={{ width: "80px", height: "80px", borderRadius: "80px", marginLeft: "15px", marginRight: "15px" }} />
                                                 )}
-                                                <div>
+                                                <div style={{maxWidth : "70%" , wordWrap : "break-word"}}>
                                                     <h2>{e.username}</h2>
                                                     <p style={{ fontSize: "20px" }}>{e.action} your tweet</p>
                                                 </div>
