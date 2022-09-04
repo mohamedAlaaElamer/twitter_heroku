@@ -78,7 +78,7 @@ function NavBar() {
     }, [JSON.parse(localStorage.getItem("userinfo")).propic])
 
     return (
-        <div style={{ backgroundColor: "#00acee" }} className="d-flex justify-content-between align-items-center w-100">
+        <div style={{ backgroundColor: "#00acee" , position:"sticky" , top:"0" , zIndex: "50"}} className="d-flex justify-content-between align-items-center w-100">
 
             <div>
                 <ul className="nav d-flex align-items-center">
@@ -151,7 +151,7 @@ function NavBar() {
                                                 </div>
                                             </div>
                                         ) : (
-                                            <div className="message d-flex" onClick={() => { window.location.href = `/${e.username}` }}>
+                                            <div className="message d-flex" style={{ borderBottom: "1px solid lightgray", padding: "5px", paddingTop: "10px" }} onClick={() => { window.location.href = `/${e.username}` }}>
                                                 {e.propic ? (
                                                     <img src={`${e.propic}`} style={{ width: "80px", height: "80px", borderRadius: "80px", marginLeft: "15px", marginRight: "15px" }} />
                                                 ) : (

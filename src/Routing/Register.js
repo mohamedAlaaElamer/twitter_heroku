@@ -63,7 +63,11 @@ function Register() {
                         "This Field is Required" :
                         e.target.value.length < 3 ?
                             "Minimum Length is 3 charachters" :
-                                null
+                            e.target.value.length > 15 ?
+                                "Maximum Length is 15 charachters" :
+                                e.target.value.indexOf(' ') >= 0 ?
+                                    "Username Cant Have Spaces" :
+                                    null
 
             })
             setuserReg({ ...userReg, "username": e.target.value })
@@ -161,27 +165,31 @@ function Register() {
     const formHandle = (e) => {
         e.preventDefault();
         //checking state
-        axios.post('https://mini-twitter-app-deploy.herokuapp.com/createuser/', userReg, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then((res) => { console.log(res.data, res.status); if (res.status === 201) { window.location.href = "/" } })
-            .catch((err) => {
-                console.log(err); if (err.response.status === 400) {
-                    if (err.response.data.username)
-                        setErrors({
-                            ...errors,
-                            UsernameError: "Already Existed"
-                        })
+        if (Data.email && Data.firstname && Data.lastname && Data.username && Data.password && Data.confirmpassword) {
 
-                    if (err.response.data.email)
-                        setErrors({
-                            ...errors,
-                            EmailError: "Already Existed"
-                        })
+
+            axios.post('https://mini-twitter-app-deploy.herokuapp.com/createuser/', userReg, {
+                headers: {
+                    'Content-Type': 'application/json'
                 }
             })
+                .then((res) => { console.log(res.data, res.status); if (res.status === 201) { window.location.href = "/" } })
+                .catch((err) => {
+                    console.log(err); if (err.response.status === 400) {
+                        if (err.response.data.username)
+                            setErrors({
+                                ...errors,
+                                UsernameError: "Already Existed"
+                            })
+
+                        if (err.response.data.email)
+                            setErrors({
+                                ...errors,
+                                EmailError: "Already Existed"
+                            })
+                    }
+                })
+        }
     }
 
     return (
@@ -260,7 +268,7 @@ function Register() {
                             // value={Data.password}
 
                             />
-                            <button style={{ float: "right", transform: "translateY(-38px)" }} className="btn btn-outline-primary" onClick={togglePassword}>
+                            <button style={{ float: "right", transform: "translateY(-38px)" }} className="btn btn-outline-primary" onClick={(e) => { e.preventDefault(); togglePassword() }}>
                                 {passwordType === "password" ? <FontAwesomeIcon icon="fas fa-eye-slash" /> : <FontAwesomeIcon icon="fa-solid fa-eye" />}
                             </button>
                             <p className="text-danger"> {errors.PasswordError} </p>
@@ -275,7 +283,7 @@ function Register() {
                                 // value={Data.confirmpassword}
                                 name='password1' value={userReg.password1} onChange={e => userHandle(e)}
                             />
-                            <button style={{ float: "right", transform: "translateY(-38px)" }} className="btn btn-outline-primary" onClick={togglePassword}>
+                            <button style={{ float: "right", transform: "translateY(-38px)" }} className="btn btn-outline-primary" onClick={(e) => { e.preventDefault(); togglePassword() }}>
                                 {passwordType === "password" ? <FontAwesomeIcon icon="fas fa-eye-slash" /> : <FontAwesomeIcon icon="fa-solid fa-eye" />}
                             </button>
 

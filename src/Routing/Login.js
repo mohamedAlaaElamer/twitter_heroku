@@ -140,7 +140,7 @@ function Login() {
                                 value={userLog.password} onChange={e => userHandle(e)}
                                 name="password"
                             />
-                            <button style={{ float: "right", transform: "translateY(-38px)" }} className="btn btn-outline-primary" onClick={togglePassword}>
+                            <button style={{ float: "right", transform: "translateY(-38px)" }} className="btn btn-outline-primary" onClick={(e)=>{e.preventDefault(); togglePassword()}}>
                                 {passwordType === "password" ? <FontAwesomeIcon icon="fas fa-eye-slash" /> : <FontAwesomeIcon icon="fa-solid fa-eye" />}
                             </button>
                             <p className="text-danger"> {errors.PasswordError} </p>
